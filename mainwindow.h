@@ -24,10 +24,11 @@ private:
 
 public:
     int j = -1;
-    int coins = 1000;
+    int coins = 1000, spent;
     int time, randSpin, guess;
     bool gameStarted = false;
     bool guessedRight;
+    QString s;
 
 private slots:
     void on_pushButton_clicked();

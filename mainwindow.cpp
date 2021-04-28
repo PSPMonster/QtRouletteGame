@@ -50,8 +50,11 @@ void MainWindow::SetUpGui()
 
 void MainWindow::on_pushButton_clicked()
 {
+    QString s = ui->lineEdit->text();
+    spent = s.toInt();
+    ui->lblHajs->setText(QString::number(coins - spent));
     randSpin = qrand() % 9 + 3;
-        qDebug() << randSpin;
+    qDebug() << randSpin;
     timer->start(500);
     gameStarted = true;
     shuffle();
@@ -75,12 +78,15 @@ void MainWindow::shuffle()
 
            if (guess == j)
            {
-               coins *= 2;
+               QString s = ui->lineEdit->text();
+               spent *= 2;
+               coins += spent;
                    ui->lblHajs->setText(QString::number(coins));
            }
            else
            {
-               coins -= coins;
+                   QString s = ui->lineEdit->text();
+               coins -= spent;
                    ui->lblHajs->setText(QString::number(coins));
            }
        }
