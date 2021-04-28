@@ -24,7 +24,7 @@ private:
 
 public:
     int j = -1;
-    int coins = 1000, spent;
+    int coins = 500, spent;
     int time, randSpin, guess;
     bool gameStarted = false;
     bool guessedRight;

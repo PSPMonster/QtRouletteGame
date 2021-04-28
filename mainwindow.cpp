@@ -34,6 +34,7 @@ void MainWindow::SetUpGui()
     palette.setBrush(this->backgroundRole(), QBrush(pixmap.scaled(this->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation)));
     this->setPalette(palette);
 
+    ui->pushButton->setDisabled(true);
     ui->lblHajs->setText(QString::number(coins));
 
     ui->right_3->setStyleSheet("QLabel { background-color : black; }");
@@ -52,7 +53,8 @@ void MainWindow::on_pushButton_clicked()
 {
     QString s = ui->lineEdit->text();
     spent = s.toInt();
-    ui->lblHajs->setText(QString::number(coins - spent));
+    coins -= spent;
+    ui->lblHajs->setText(QString::number(coins));
     randSpin = qrand() % 9 + 3;
     qDebug() << randSpin;
     timer->start(500);
@@ -79,15 +81,9 @@ void MainWindow::shuffle()
            if (guess == j)
            {
                QString s = ui->lineEdit->text();
-               spent *= 2;
-               coins += spent;
-                   ui->lblHajs->setText(QString::number(coins));
-           }
-           else
-           {
-                   QString s = ui->lineEdit->text();
-               coins -= spent;
-                   ui->lblHajs->setText(QString::number(coins));
+               coins += spent * 2;
+
+               ui->lblHajs->setText(QString::number(coins));
            }
        }
 
@@ -120,6 +116,7 @@ void MainWindow::shuffle()
 
        }
        j*= -1;
+       ui->pushButton->setDisabled(true);
    }
 }
 
@@ -128,10 +125,12 @@ void MainWindow::shuffle()
 void MainWindow::on_pushButton_2_clicked()
 {
     guess = -1;
+    ui->pushButton->setDisabled(false);
 }
 
 //czerwone
 void MainWindow::on_pushButton_3_clicked()
 {
     guess = 1;
+    ui->pushButton->setDisabled(false);
 }
