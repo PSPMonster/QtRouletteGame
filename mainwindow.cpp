@@ -13,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     SetUpGui();
-    time = 0;
-
+    QTimer::singleShot(10000,ui->lblHowToPlay, SLOT(hide()));
     connect(timer, SIGNAL(timeout()), this, SLOT(shuffle()));
     qsrand(0);
 }
@@ -27,6 +26,9 @@ MainWindow::~MainWindow()
 void MainWindow::SetUpGui()
 {
     this->setWindowTitle("Black Red White Casino");
+
+    time = 0;
+    ui->lineEdit->
 
     setAutoFillBackground(false);
     QPixmap pixmap=QPixmap(":/new/prefix1/images/bg.jpg").scaled(this->size());
@@ -46,6 +48,11 @@ void MainWindow::SetUpGui()
     ui->left->setStyleSheet("QLabel { background-color : black; }");
     ui->left_2->setStyleSheet("QLabel { background-color : red; }");
     ui->left_3->setStyleSheet("QLabel { background-color : black; }");
+}
+
+void MainWindow::hideLbl()
+{
+   ui->lblHowToPlay->setVisible(false);
 }
 
 
@@ -121,14 +128,14 @@ void MainWindow::shuffle()
 }
 
 
-//czarne
+//black
 void MainWindow::on_pushButton_2_clicked()
 {
     guess = -1;
     ui->pushButton->setDisabled(false);
 }
 
-//czerwone
+//red
 void MainWindow::on_pushButton_3_clicked()
 {
     guess = 1;

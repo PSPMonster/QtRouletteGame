@@ -5,4 +5,5 @@
         <file>images/bg.jpg</file>
         <file>images/icon.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

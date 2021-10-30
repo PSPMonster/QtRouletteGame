@@ -21,10 +21,9 @@ private:
     Ui::MainWindow *ui;
     QTimer *timer = new QTimer(this);
 
-
 public:
     int j = -1;
-    int coins = 500, spent;
+    int coins = 2000, spent;
     int time, randSpin, guess;
     bool gameStarted = false;
     bool guessedRight;
@@ -34,6 +33,8 @@ private slots:
     void on_pushButton_clicked();
 
     void shuffle();
+
+    void hideLbl();
 
     void on_pushButton_2_clicked();
 
